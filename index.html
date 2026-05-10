@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوبر مغامر - Super Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <!-- Clouds -->
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+            <!-- Mario Character with Crown -->
+            <canvas id="mario-hero" width="90" height="130"></canvas>
+            <!-- Grass decoration -->
+            <div class="grass-layer">
+                <div class="grass-blade" style="--i:0"></div>
+                <div class="grass-blade" style="--i:1"></div>
+                <div class="grass-blade" style="--i:2"></div>
+                <div class="grass-blade" style="--i:3"></div>
+                <div class="grass-blade" style="--i:4"></div>
+                <div class="grass-blade" style="--i:5"></div>
+                <div class="grass-blade" style="--i:6"></div>
+                <div class="grass-blade" style="--i:7"></div>
+                <div class="grass-blade" style="--i:8"></div>
+                <div class="grass-blade" style="--i:9"></div>
+                <div class="grass-blade" style="--i:10"></div>
+                <div class="grass-blade" style="--i:11"></div>
+                <div class="grass-blade" style="--i:12"></div>
+                <div class="grass-blade" style="--i:13"></div>
+                <div class="grass-blade" style="--i:14"></div>
+                <div class="grass-blade" style="--i:15"></div>
+                <div class="grass-blade" style="--i:16"></div>
+                <div class="grass-blade" style="--i:17"></div>
+                <div class="grass-blade" style="--i:18"></div>
+                <div class="grass-blade" style="--i:19"></div>
+            </div>
+            <div class="ground-strip"></div>
+            <div class="title-wrapper">
+                <h1 class="game-title">ماريو المغامر</h1>
+                <p class="subtitle">Mario Adventure</p>
+            </div>
+            <div class="menu-buttons">
+                <button id="startBtn" class="menu-btn play-btn" onclick="startGame()">🎮 لعب</button>
+                <button class="menu-btn ctrl-btn" onclick="showControls()">🕹️ التحكم</button>
+            </div>
+            <div class="coin-animation">🪙</div>
+        </div>
+
+        <!-- Controls Screen -->
+        <div id="controls-screen" class="screen" style="display:none;">
+            <h2>التحكم</h2>
+            <div class="controls-grid">
+                <div class="control-item">
+                    <span class="key">→ / D</span>
+                    <span>تحرك يمين</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">← / A</span>
+                    <span>تحرك يسار</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">↓ / S</span>
+                    <span>انحني</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">↑ / W / Space</span>
+                    <span>قفز / قفز من الحائط</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">Shift</span>
+                    <span>اندفاع سريع</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">🔴 لوحة القفز</span>
+                    <span>قفز عالي جداً!</span>
+                </div>
+            </div>
+            <button class="menu-btn" onclick="hideControls()">رجوع</button>
+        </div>
+
+        <!-- HUD -->
+        <div id="hud" style="display:none;">
+            <div class="hud-item">
+                <span>🪙</span>
+                <span id="coinCount">0</span>
+            </div>
+            <div class="hud-item">
+                <span>❤️</span>
+                <span id="lives">3</span>
+            </div>
+            <div class="hud-item">
+                <span>⭐</span>
+                <span id="score">0</span>
+            </div>
+            <div class="hud-item">
+                <span>🏁</span>
+                <span id="levelNum">1</span>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="screen" style="display:none;">
+            <h1 class="gameover-title">انتهت اللعبة!</h1>
+            <p class="final-score">النقاط: <span id="finalScore">0</span></p>
+            <button class="menu-btn" onclick="restartGame()">أعد المحاولة</button>
+        </div>
+
+        <!-- Win Screen -->
+        <div id="win-screen" class="screen" style="display:none;">
+            <canvas id="rescue-canvas" width="960" height="540" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;"></canvas>
+            <div style="z-index:2;text-align:center;">
+                <h1 class="win-title">🎉 أنقذت الأميرة! 🎉</h1>
+                <p class="final-score">شكراً يا ماريو! أنت بطلي!</p>
+                <p class="final-score">النقاط: <span id="winScore">0</span></p>
+                <button class="menu-btn" onclick="restartGame()">العب مرة ثانية</button>
+            </div>
+        </div>
+
+        <!-- Mario Face -->
+        <canvas id="mario-face" width="80" height="80"></canvas>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls" style="display:none;">
+            <button id="btn-left" class="mobile-btn">◀</button>
+            <button id="btn-right" class="mobile-btn">▶</button>
+            <button id="btn-jump" class="mobile-btn jump-btn">▲</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
